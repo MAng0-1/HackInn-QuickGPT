@@ -1,11 +1,13 @@
-sudo apt install python3-tk
-pip3 install pyperclip keyboard openai
+python3 -m venv venv
+./venv/bin/Activate.ps1
 
+pip3 install pyperclip keyboard openai
 pyinstaller `
-  --distpath "$PSScriptRoot/bin" `
-  --workpath "$PSScriptRoot/build" `
   --noconfirm `
   --onefile `
+  --clean `
   --name "startup.exe" `
-  --paths "~/.local/lib/python3.10/site-packages:/usr/lib/python3.10/tkinters"`
+  --paths "$PSScriptRoot/venv/lib:/usr/lib/python3.10/tkinters"`
   keyboard_listener.py
+
+deactivate

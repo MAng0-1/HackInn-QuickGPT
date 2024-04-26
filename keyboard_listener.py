@@ -3,10 +3,7 @@ import keyboard
 import time
 import sys
 import os
-
-
 import tkinter as tk
-
 from openai import OpenAI
 
 
@@ -81,8 +78,8 @@ def clipboard_changed():
     text_widget = tk.Text(root, height=10, width=50)
     text_widget.pack(fill=tk.BOTH, expand=True)
 
-    
-    
+
+
     # Create a button to send the selected option to ChatGPT
     def send_option():
         # Get the selected option
@@ -122,7 +119,7 @@ def clipboard_changed():
     # Run the main event loop
     root.mainloop()
 
-        
+
 # Listen for the key combination Ctrl+Shift+O
 keyboard.add_hotkey('ctrl+shift+o', clipboard_changed)
 
