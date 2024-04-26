@@ -9,6 +9,7 @@ import tkinter as tk
 
 from openai import OpenAI
 
+
 def find_api_key_file(file_name, root_dir=os.getcwd()):
     for root, dirs, files in os.walk(root_dir):
         if file_name in files:
@@ -67,12 +68,21 @@ def clipboard_changed():
 
     # Create a listbox with the options
     options = ["Translate clipboard to english", "Explain clipboard in german", "Rewerite the text in good english"]
-    listbox = tk.Listbox(root, height=len(options))
-    listbox.pack()
+    listbox = tk.Listbox(root)
+    listbox.pack(fill=tk.BOTH, expand=True)
 
     for option in options:
         listbox.insert(tk.END, option)
 
+
+    def exit_window():
+        root.destroy()
+
+    text_widget = tk.Text(root, height=10, width=50)
+    text_widget.pack(fill=tk.BOTH, expand=True)
+
+    
+    
     # Create a button to send the selected option to ChatGPT
     def send_option():
         # Get the selected option
@@ -92,16 +102,22 @@ def clipboard_changed():
         print(completion.choices[0].message)
         print("Response from ChatGPT:", completion.choices[0].message.content)
 
+        text_widget.insert(tk.END, completion.choices[0].message.content)
+        text_widget.see(tk.END)
+
         pyperclip.copy(completion.choices[0].message.content)
 
-        # Close the popup window
-        root.destroy()
 
     button = tk.Button(root, text="Send to ChatGPT", command=send_option)
     button.pack()
 
+    exit_button = tk.Button(root, text="Exit", command=exit_window)
+    exit_button.pack()
+
     # Show the popup window
     root.deiconify()
+
+    root.attributes('-topmost', 1)  # Bring the window to the foreground
 
     # Run the main event loop
     root.mainloop()
