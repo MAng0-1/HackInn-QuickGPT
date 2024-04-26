@@ -1,2 +1,2 @@
 New-Item -Path 'C:\QuickGPT' -ItemType Directory -Force
-New-Service -Name "ClipGPT" -BinaryPathName 'C:\QuickGPT\startup.exe' -StartupType "automatic"
+New-Service -Name "ClipGPT" -BinaryPathName "$PSScriptRoot\bin\startup.exe" -StartupType "automatic"
