@@ -1,7 +1,9 @@
 python3 -m venv venv
+python -m venv venv
 ./venv/bin/Activate.ps1
+./venv/Scripts/Activate.ps1
 
-pip3 install pyperclip keyboard openai
+pip3 install pyinstaller pyperclip keyboard openai
 pyinstaller `
   --noconfirm `
   --onefile `
