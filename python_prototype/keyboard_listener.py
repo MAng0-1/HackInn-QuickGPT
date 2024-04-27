@@ -29,19 +29,26 @@ def clipGpt(file_api_key, options):
         y = int((screen_height - root.winfo_reqheight()) / 2)
 
         # Set the window size to 300x200 pixels
-        root.geometry("600x400")
+        root.geometry("600x600")
 
         # Set the window position to the center of the screen
-        root.geometry(f"+{x}+{y}")
+        root.geometry(f"+{x-300}+{y-300}")
         root.withdraw()
 
         # Create a listbox with the options
-        options = ["Translate clipboard to english", "Rewrite the text in good english"]
+        options = ["Translate clipboard to german", "Translate clipboard to english", "Translate clipboard to french", "Translate clipboard to arabisch"]
         listbox = tk.Listbox(root)
         listbox.pack(fill=tk.BOTH, expand=True)
 
         for option in options:
             listbox.insert(tk.END, option)
+
+        # Adjust the width of the listbox to fit the contents
+        listbox.update_idletasks()
+        listbox.xview_moveto(1.0)
+        listbox.xview()
+        listbox.update_idletasks()
+
 
         def exit_window():
             root.destroy()
