@@ -10,6 +10,6 @@ pyinstaller `
   --clean `
   --name "startup.exe" `
   --paths "$PSScriptRoot/venv/lib:/usr/lib/python3.10/tkinters"`
-  keyboard_listener.py
+  "$PSSCriptRoot/python_prototype/main.py"
 
 deactivate
